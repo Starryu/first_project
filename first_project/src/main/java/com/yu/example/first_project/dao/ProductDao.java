@@ -19,43 +19,43 @@ public interface ProductDao {
      * 增加产品
      * @param productVO
      */
-    public void insert(ProductVO productVO);
+     void insert(ProductVO productVO);
 
     /**
      * 删除产品信息
      * @param productId
      */
-    public void delete(int productId);
+     void delete(int productId);
 
     /**
      * 修改产品信息
      * @param productVO
      */
-    public void update(ProductVO productVO);
+     void update(ProductVO productVO);
 
     /**
      * 修改商品数量
      * @param productId
      */
-    public void alertNumber(@Param("productId") int productId, @Param("number") int num, @Param("alertTime") Date alertTime);
+     void alertNumber(@Param("productId") int productId, @Param("number") int num, @Param("alertTime") Date alertTime);
 
     /**
      * 根据产品id查询产品信息
      * @param productId
      */
-    public ProductVO selectById(int productId);
+     ProductVO selectById(int productId);
 
     /**
      * 查询所有的产品信息
      * @return
      */
-    public List<ProductVO> selectAll();
+     List<ProductVO> selectAll();
 
     /**
      * 查询所有商品的名称
      * @return
      */
-    public List<String> selectProductName();
+     List<String> selectProductName();
 
     /**
      * 分页查询
@@ -63,5 +63,5 @@ public interface ProductDao {
      * @param pageSize
      * @return
      */
-    public List<ProductVO> selectByPage(@Param("currPage") int currPage, @Param("pageSize") int pageSize);
+     List<ProductVO> selectByPage(@Param("currPage") int currPage, @Param("pageSize") int pageSize);
 }

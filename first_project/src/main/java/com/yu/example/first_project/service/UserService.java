@@ -17,19 +17,19 @@ public interface UserService {
      * 删除用户
      * @param userId
      */
-    void deleteUser(Integer userId);
+    ResponseVO deleteUser(String userName);
 
     /**
      * 更新用户
      * @param userVO
      */
-    void updateUser(UserVO userVO);
+    ResponseVO updateUser(UserVO userVO);
 
     /**
      * 查询用户
      * @param userName
      * @return
      */
-    UserVO selectUser(String userName);
+    ResponseVO selectUser(String userName);
 
 }

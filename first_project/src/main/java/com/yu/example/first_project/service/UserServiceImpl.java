@@ -5,10 +5,12 @@ import com.yu.example.first_project.dao.UserDao;
 import com.yu.example.first_project.vo.ResponseVO;
 import com.yu.example.first_project.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class UserServiceImpl implements UserService {
+
     @Autowired
     private UserDao userDao;
 
@@ -23,17 +25,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(Integer userId) {
-
+    public ResponseVO deleteUser(String userName) {
+        userDao.deleteUser(userName);
+        return ResponseVO.buildSuccess("删除用户成功");
     }
 
     @Override
-    public void updateUser(UserVO userVO) {
-
+    public ResponseVO updateUser(UserVO userVO) {
+        List<String> nameList = userDao.selectUserName();
+        if(!nameList.contains(userVO.getUserName())){
+            return ResponseVO.buildfailure("用户不存在");
+        }
+        userDao.updateUser(userVO);
+        return ResponseVO.buildSuccess("更新成功");
     }
 
     @Override
-    public UserVO selectUser(String userName) {
-        return null;
+    public ResponseVO selectUser(String userName) {
+        List<String> nameList = userDao.selectUserName();
+        if(!nameList.contains(userName)){
+            return ResponseVO.buildfailure("用户不存在");
+        }
+        return ResponseVO.buildSuccess(userDao.selectUser(userName));
     }
 }
