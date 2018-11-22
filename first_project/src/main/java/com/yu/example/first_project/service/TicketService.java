@@ -3,6 +3,8 @@ package com.yu.example.first_project.service;
 import com.yu.example.first_project.vo.ResponseVO;
 import com.yu.example.first_project.vo.TicketVO;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
 public interface TicketService {
@@ -18,7 +20,7 @@ public interface TicketService {
      * @param userName
      * @param expired
      */
-    void addTicket(String userName, Date expired);
+    TicketVO addTicket(String userName, Date expired);
 
     /**
      * 判断ticket是否有效
@@ -32,4 +34,12 @@ public interface TicketService {
      * @param ticket
      */
     void inValidTicket(String ticket);
+
+    /**
+     * 将ticket添加到cookie
+     * @param request
+     * @param response
+     * @param responseVO
+     */
+    void addTicketToCookie(HttpServletRequest request, HttpServletResponse response, ResponseVO responseVO);
 }

@@ -2,6 +2,7 @@ package com.yu.example.first_project.service;
 
 
 import com.yu.example.first_project.dao.UserDao;
+import com.yu.example.first_project.util.StringUtil;
 import com.yu.example.first_project.vo.ResponseVO;
 import com.yu.example.first_project.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseVO deleteUser(String userName) {
+        List<String> nameList = userDao.selectUserName();
+        if(!nameList.contains(userName)){
+            return ResponseVO.buildfailure("用户不存在");
+        }
         userDao.deleteUser(userName);
         return ResponseVO.buildSuccess("删除用户成功");
     }
@@ -35,6 +40,9 @@ public class UserServiceImpl implements UserService {
         List<String> nameList = userDao.selectUserName();
         if(!nameList.contains(userVO.getUserName())){
             return ResponseVO.buildfailure("用户不存在");
+        }
+        if(StringUtil.isEmpty(userVO.getUserName())){
+            return ResponseVO.buildfailure("用户名不能为空");
         }
         userDao.updateUser(userVO);
         return ResponseVO.buildSuccess("更新成功");
