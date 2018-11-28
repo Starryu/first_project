@@ -4,9 +4,10 @@ import com.yu.example.first_project.dao.UserDao;
 import com.yu.example.first_project.vo.ResponseVO;
 import com.yu.example.first_project.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class LoginServiceImpl implements LoginService{
 
     @Autowired

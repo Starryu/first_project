@@ -2,6 +2,7 @@ package com.yu.example.first_project.controller;
 
 import com.yu.example.first_project.service.LoginService;
 import com.yu.example.first_project.service.TicketService;
+import com.yu.example.first_project.util.CookieUtil;
 import com.yu.example.first_project.vo.ResponseVO;
 import com.yu.example.first_project.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,9 @@ public class LoginController {
 
     @RequestMapping(value = "/logout",method = RequestMethod.POST)
     public ResponseVO logout(HttpServletRequest request){
-        return null;
+        String ticket = CookieUtil.getCookies(request,CookieUtil.LOGIN_TICKET);
+        ticketService.inValidTicket(ticket);
+        return ResponseVO.buildSuccess();
     }
 
 }

@@ -15,6 +15,12 @@ public class ResponseVO {
         return responseVO;
     }
 
+    public static ResponseVO buildSuccess(){
+        ResponseVO responseVO = new ResponseVO();
+        responseVO.setResult(true);
+        return responseVO;
+    }
+
     public static ResponseVO buildfailure(String message){
         ResponseVO responseVO = new ResponseVO();
         responseVO.setResult(true);
